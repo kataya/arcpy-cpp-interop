@@ -14,17 +14,20 @@ extern "C"
     // callback_function returns an int, either 1 (cancel) or 0 (continue)
 
     (int)callback_function(0, arg1); // pass arg1 back
-    (int)callback_function(0, L"Message from dll (start of loop)");
+    //(int)callback_function(0, L"Message from dll (start of loop)");
+    (int)callback_function(0, L"メッセージ from dll (start of loop)");
 
     for (int i = 0; i < 10; i++)
     {
       if ((int)callback_function(i, L"") == 1)  // i will move the progress bar
         return 1; // if callback returned 1 the user has clicked 'cancel' so quit
 
+      if (i == 5) { (int)callback_function(0, L"メッセージ from dll (ループの途中 50%)"); }
       Sleep(1000);
     }
 
-    (int)callback_function(0, L"Message from dll (end of loop)");
+    //(int)callback_function(0, L"Message from dll (end of loop)");
+    (int)callback_function(0, L"メッセージ from dll (end of loop)");
 
     return 0; // return 0 = success
   }
